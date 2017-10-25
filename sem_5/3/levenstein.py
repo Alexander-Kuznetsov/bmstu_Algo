@@ -10,7 +10,7 @@ def levensteinRec(str1, str2):
         return size1
 
     symbIdent = 0
-    if (str1[0] == str2[0]):
+    if (str1[0] != str2[0]):
         symbIdent = 1
 
     return min((levensteinRec(str1[1:], str2) + 1),
@@ -74,7 +74,7 @@ def printResult(str1, str2, countOperations):
     getAnswer(str1, str2)
 
     print("\nWork Time:")
-    getWorkTime(str1, str2, countOperations)
+    #getWorkTime(str1, str2, countOperations)
 
         
 def getAnswer(str1, str2):
@@ -103,7 +103,8 @@ def getWorkTime(str1, str2, countOperations):
 
 def main():
     countOperations = 2
-    str1, str2 = "programming", "gamming"
+    #str1, str2 = "programming", "gamming"
+    str1, str2 = "TU27", "U72"
     printResult(str1, str2, countOperations)
        
 if __name__ == "__main__":
