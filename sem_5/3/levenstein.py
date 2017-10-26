@@ -36,7 +36,7 @@ def levensteinIter_3(word1, word2):
 def levensteinIter_4(str1, str2):
     size1, size2 = len(str1), len(str2)
     if (size1 < 2 or size2 < 2):
-        return levensteinIter(str1, str2)
+        return levensteinIter_3(str1, str2)
 
     if size1 > size2:
         str1, str2 = str2, str1
@@ -74,7 +74,7 @@ def printResult(str1, str2, countOperations):
     getAnswer(str1, str2)
 
     print("\nWork Time:")
-    #getWorkTime(str1, str2, countOperations)
+    getWorkTime(str1, str2, countOperations)
 
         
 def getAnswer(str1, str2):
@@ -102,9 +102,8 @@ def getWorkTime(str1, str2, countOperations):
                                                 / countOperations), "second")
 
 def main():
-    countOperations = 2
-    #str1, str2 = "programming", "gamming"
-    str1, str2 = "TU27", "U72"
+    countOperations = 100
+    str1, str2 = "programming", "gamming"
     printResult(str1, str2, countOperations)
        
 if __name__ == "__main__":
