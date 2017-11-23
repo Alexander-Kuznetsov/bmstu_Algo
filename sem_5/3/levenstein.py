@@ -46,7 +46,7 @@ def levensteinIter_4(str1, str2):
     curr_row = [1] + [0] * size1
     for i in range(1, size1 + 1):
         add, delete, change = prev_row[i] + 1, curr_row[i - 1] + 1, prev_row[i - 1]
-        if str1[i - 1] != str2[i - 1]:
+        if str1[i - 1] != str2[0]:
             change += 1
         curr_row[i] = min(add, delete, change)
 
@@ -59,10 +59,14 @@ def levensteinIter_4(str1, str2):
         curr_row[1] = min(add, delete, change)
 
         for j in range(2, size1 + 1):
-            add, delete, change, transp = prev_row[j] + 1, curr_row[j - 1] + 1, prev_row[j - 1], prev_prev_row[j - 2] + 1                                          
+            add, delete, change = prev_row[j] + 1, curr_row[j - 1] + 1, prev_row[j - 1]                                         
             if (str1[j - 1] != str2[i - 1]):
                 change += 1
-            curr_row[j] = min(add, delete, change, transp)
+            if (str2[i - 1] == str1[j - 2] and str2[i - 2] == str1[j - 1]):
+                transp = prev_prev_row[j - 2] + 1 
+                curr_row[j] = min(add, delete, change, transp)
+            else:
+                curr_row[j] = min(add, delete, change)
 
     return curr_row[size1]
 
@@ -103,7 +107,10 @@ def getWorkTime(str1, str2, countOperations):
 
 def main():
     countOperations = 100
-    str1, str2 = "programming", "gamming"
+    #str1, str2 = "programming", "gamming"
+    #str1, str2 = "abcde", "popop"
+    str1 = input("str1 = ")
+    str2 = input("str2 = ")
     printResult(str1, str2, countOperations)
        
 if __name__ == "__main__":
